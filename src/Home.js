@@ -10,6 +10,11 @@ const Home = () => {
         { title: 'Web dev top tips', body: 'lorem ipsum...', author: 'Peach', id: 3 }
     ])
 
+
+    const handleDelete = (id) => {
+        const newBlogs = blogs.filter(blog => blog.id !== id);
+        setBlogs(newBlogs);
+    }
     // ****************** Learning Material
     // let name = 'robert';
     // the [] is array destructuring; the first element is the value, the second is the function that updates the value
@@ -33,7 +38,8 @@ const Home = () => {
 
     return ( 
         <div className="home">
-            <BlogList blogs={blogs} />
+            <BlogList blogs={blogs} title="All Blogs" handleDelete={handleDelete} />
+            <BlogList blogs={blogs.filter((blog) => blog.author === 'Marin')} title="Marin's Blogs" handleDelete={handleDelete}/>
         {/* ****************** Learning Material */
             /* <h2>Homepage</h2>
            <p>{ name  is {age years old</p> *
