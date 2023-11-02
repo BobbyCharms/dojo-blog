@@ -1,6 +1,6 @@
 // a hook in react starts with use; a hook is a function that lets you hook into react features from a functional component
 // useState is a react hook; the {} around destructures it  
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import BlogList from './BlogList';
 
 const Home = () => {
@@ -10,11 +10,18 @@ const Home = () => {
         { title: 'Web dev top tips', body: 'lorem ipsum...', author: 'Peach', id: 3 }
     ])
 
+    const [name, setName] = useState('Marin');
 
     const handleDelete = (id) => {
         const newBlogs = blogs.filter(blog => blog.id !== id);
         setBlogs(newBlogs);
     }
+
+    useEffect(() => {
+        console.log('use effect ran');
+        // console.log(blogs);
+        console.log(name);
+    }, [name]);
     // ****************** Learning Material
     // let name = 'robert';
     // the [] is array destructuring; the first element is the value, the second is the function that updates the value
@@ -39,6 +46,9 @@ const Home = () => {
     return ( 
         <div className="home">
             <BlogList blogs={blogs} title="All Blogs" handleDelete={handleDelete} />
+            <button onClick={() => setName('Bill')}>Change Name</button>
+            <p>{ name }</p>
+            
             <BlogList blogs={blogs.filter((blog) => blog.author === 'Marin')} title="Marin's Blogs" handleDelete={handleDelete}/>
         {/* ****************** Learning Material */
             /* <h2>Homepage</h2>
