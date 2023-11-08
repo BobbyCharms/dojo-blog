@@ -1,6 +1,6 @@
 // a hook in react starts with use; a hook is a function that lets you hook into react features from a functional component
 // useState is a react hook; the {} around destructures it  
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import BlogList from './BlogList';
 import useFetch from './useFetch';
 

@@ -2,6 +2,7 @@ import Navbar from './Navbar';
 import Home from './Home';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Create from './Create';
+import BlogDetails from './BlogDetails';
 
 function App() {
   // Variables used below to fill in {} in JSX to return html elements when rendered using babel in the browser
@@ -17,6 +18,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/create" element={<Create />} />
+          <Route path="/blogs/:id" element={<BlogDetails />} />
         </Routes>
         {/* Example filler code that's hard coded vs code that is dynamic components
         <h1>{ title }</h1>
