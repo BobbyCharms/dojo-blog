@@ -44,8 +44,9 @@ const Home = () => {
             {error && <div>{ error }</div>}
             {isPending && <div>Loading...</div>}
             {blogs && <BlogList blogs={blogs} title="All Blogs"/>}
-            <button onClick={() => setName('Bill')}>Change Name</button>
-            <p>{ name }</p>
+            {/* Used to test delete function on homepage */}
+            {/* <button onClick={() => setName('Bill')}>Change Name</button>
+            <p>{ name }</p> */}
             
             {blogs && <BlogList blogs={blogs.filter((blog) => blog.author === 'Marin')} title="Marin's Blogs"/>}
         {/* ****************** Learning Material */
