@@ -1,18 +1,62 @@
+import { useState } from 'react';
+import { Navigate, useNavigate } from 'react-router-dom';
+
 const Create = () => {
+    const [title, setTitle] = useState('')
+    const [body, setBody] = useState('')
+    const [author, setAuthor] = useState('Marin')
+    const [isPending, setIsPending] = useState(false);
+    const navigate = useNavigate();
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const blog = { title, body, author };
+
+        setIsPending(true);
+
+       fetch('http://localhost:8000/blogs', {
+           method: 'POST',
+           headers: { "Content-Type": "application/json" },
+           body: JSON.stringify(blog)
+       }).then(() => {
+           console.log('new blog added');
+           setIsPending(false);
+            navigate('/');
+       })
+    }
+
+
     return ( 
         <div className="create">
             <h2>Add a New Blog</h2>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <label>Blog Title:</label>
-                <input type="text" required />
+                <input 
+                    type="text" 
+                    required
+                    value={title} 
+                    onChange={(e) => setTitle(e.target.value)}
+                />
                 <label>Blog Body:</label>
-                <textarea required></textarea>
+                <textarea 
+                    required
+                    value={body}
+                    onChange={(e) => setBody(e.target.value)}
+                ></textarea>
                 <label>Blog Author:</label>
-                <select>
+                <select
+                    value={author}
+                    onChange={(e) => setAuthor(e.target.value)}
+                >
                     <option value="Marin">Marin</option>
                     <option value="Yoshi">Yoshi</option>
                 </select>
-                <button>Add Blog</button>
+                {!isPending && <button>Add Blog</button>}
+                {isPending && <button disabled >Adding Blog..</button>}
+                {/* Used for outputting the input content to test */}
+                {/* <p>{ title }</p>
+                <p>{ body }</p>
+                <p>{ author }</p> */}
             </form>
         </div>
      );
